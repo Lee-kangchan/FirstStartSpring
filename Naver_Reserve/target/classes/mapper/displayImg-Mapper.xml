@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DisplayImgDAO">
+
+	<select id="getDisplayImg" resultType="displayImg">
+		SELECT * FROM reserve.display_info;
+	</select>
+
+<!-- SELECT 
+		file_info.save_file_name, 
+		FROM reserve.file_info 
+		Inner JOIN display_info_image on display_info_image.file_id = file_info.id
+		 -->
+
+</mapper>

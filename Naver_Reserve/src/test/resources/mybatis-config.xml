@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="db.properties" />
+	<typeAliases>
+		<typeAlias type="com.springbook.app.display.impl	.DisplayVO" alias="display"></typeAlias>
+		<typeAlias type="com.springbook.app.display_img.impl.DisplayImgVO" alias="displayImg"></typeAlias>
+		<typeAlias type="com.springbook.app.product.impl.ProductVO" alias="product"></typeAlias>
+		<typeAlias type="com.springbook.app.product_img.impl.ProductImgVO" alias="productImg"></typeAlias>
+		<typeAlias type="com.springbook.app.file_info.impl.FileinfoVO" alias="fileinfo"></typeAlias>
+		<typeAlias type="com.springbook.app.category.impl.CategoryVO" alias="category"></typeAlias>
+		<typeAlias type="com.springbook.app.promotion.impl.PromotionVO" alias="promotion"></typeAlias>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="display-Mapper.xml"/>
+		<mapper resource="displayImg-Mapper.xml"/>
+		<mapper resource="product-Mapper.xml"/>
+		<mapper resource="productImg-Mapper.xml"/>
+		<mapper resource="fileinfo-Mapper.xml"/>
+		<mapper resource="category-Mapper.xml" />
+		<mapper resource="promotion-Mapper.xml"/>
+	</mappers>
+</configuration>

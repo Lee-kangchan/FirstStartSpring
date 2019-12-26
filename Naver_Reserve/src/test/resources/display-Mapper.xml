@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DisplayDAO">
+
+	<insert id="insertDisplay">
+		INSERT INTO display_info(operning_hours, place_name, place_lot, place_street, tel, homepage, email)
+		VALUES(#{opening_hours},#{place_name},#{place_lot},#{place_street},#{tel},#{hompage},#{email})
+	</insert>
+
+	<select id="getDisplay" resultType="display">
+		select * from display_info where id=#{id} 
+	</select>
+</mapper>

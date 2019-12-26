@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductDAO">
+	
+	<select id="getProduct" resultType="product">
+		SELECT * 
+		FROM product , product_image
+		inner join file_info 
+		on reserve.product_image.file_id = file_info.id 
+		where product.id = product_image.product_id
+		and product_image.type = "th";
+	</select>
+	
+	<select id="getProductList" resultType="product" parameterType="int">
+		<![CDATA[
+		SELECT *
+		FROM product , product_image
+		inner join file_info 
+		on reserve.product_image.file_id = file_info.id 
+		where product.id = product_image.product_id
+		and product_image.type = "th"
+		and category_id = ${value};
+		]]>
+	</select>
+	
+	<select id="getDetailProduct" resultType="product" parameterType="int">
+	<![CDATA[
+		SELECT *
+		FROM product,file_info
+		join product_image
+		on product_image.file_id = file_info.id
+		where product.id = product_image.product_id
+		and product.id = ${value}
+		and product_image.type != "th";
+	]]>
+	</select>
+	<select id = "getReserveProduct" resultType="product" parameterType="int">
+	<![CDATA[
+		SELECT * 
+		FROM 
+		product a, product_image b , product_price c , file_info d , display_info e
+		where a.id = b.product_id
+		and a.id = c.product_id
+		and b.file_id = d.id
+		and e.product_id =a.id
+		and b.type ="th"
+		and a.id = ${value};
+		
+	]]>
+	</select>
+	<select id ="getMyreservationProduct" resultType="product">
+		SELECT description, opening_hours , place_street , place_name, cancel_flag ,sum(price*count) as price 
+		FROM reserve.reservation_info = reservation , reserve.reservation_info_price = reservation_price , product_price = price , product, display_info = display
+		where reservation.id = reservation_price.reservation_info_id 
+		and reservation_price.product_price_id = price.id
+		and price.product_id = product.id
+		and display.product_id = product.id
+		and reservation_email = #{reservation_email}
+	</select>
+	<update id="updateMyreservationProduct">
+		update reserve.reservation_info
+		set cancel_flag = #{cancel_flag}
+		where reservation_email=#{reservation_email} 
+	</update>
+</mapper>

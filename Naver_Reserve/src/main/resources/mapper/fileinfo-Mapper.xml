@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FileinfoDAO">
+	<select id="getfile" resultType="fileinfo">
+		select * from file_info
+	</select>
+
+	<insert id="insertFileinfo">
+		INSERT INTO file_info (file_name,save_file_name,content_type)
+		VALUES(#{file_name},#{save_file_name},#{content_type})
+	</insert>
+
+	<delete id="deleteFileinfo">
+		DELETE FROM file_info WHERE id=#{id}
+	</delete>
+
+</mapper>

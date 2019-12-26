@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReservationDAO">
+
+
+	<select id="getReservation" resultType="reservation" parameterType="int">
+		SELECT * FROM
+		reserve.reservation_user_comment
+		join product
+		on product.id = product_id
+		join reservation_info
+		on reservation_info.id = reservation_user_comment.reservation_info_id 
+		left join reservation_user_comment_image 	
+        on reservation_user_comment_image.reservation_user_comment_id = reservation_user_comment.id
+        left join file_info 
+        on reservation_user_comment_image.file_id = file_info.id
+        where product.id = ${value}
+        
+	</select>
+	<insert id="insertReservation_info"> 
+		INSERT into reservation_info 
+		(reservation_email, reservation_name, reservation_tel, reservation_info.product_id, reservation_info.display_info_id)
+		values 
+		(#{reservation_email}, #{reservation_name}, #{reservation_tel}, #{product_id}, #{reservation_id});
+	</insert>
+	
+	<insert id="insertReservation_info_price" >
+		insert into reservation_info_price 
+		(reservation_info_price.reservation_info_id, reservation_info_price.product_price_id, reservation_info_price.countw)
+		values
+		(( select reservation_info.id from reservation_info where reservation_info.reservation_email = ${reservation_email}) , ${product_prise_id} , ${count} ); 
+	</insert>
+</mapper>
+
+
+
+
+
+
+

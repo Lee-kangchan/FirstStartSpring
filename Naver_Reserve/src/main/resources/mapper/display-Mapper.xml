@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DisplayDAO">
+
+
+	<select id="getDisplay" resultType="display" parameterType="int">
+		SELECT *
+		from product
+		inner join display_info
+		on display_info.id = product_id
+		inner join display_info_image
+		on display_info.id = display_info_image.display_info_id
+		inner join file_info
+		on file_info.id = display_info_image.file_id
+		where product.id = ${value}
+		and display_info.id = ${value};
+
+	</select>
+</mapper>

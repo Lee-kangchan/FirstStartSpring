@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PromotionDAO">
+
+	<!-- 
+	<select id="getPromotion" resultMap="promotion">
+		SELECT * FROM promotion where id=#{id}
+	</select>
+
+	<update id="updatePromotion">
+		UPDATE promotion
+		SET
+		id=#{id}
+		WHERE
+		product_id = #{product_id}
+	</update>
+ -->
+</mapper>
